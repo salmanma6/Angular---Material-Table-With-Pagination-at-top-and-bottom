@@ -21,9 +21,6 @@ export class TablePaginationExample {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  ngAfterViewChecked(){
-     this.dataSource.paginator = this.paginator;
-  }
 }
 
 export interface Element {
