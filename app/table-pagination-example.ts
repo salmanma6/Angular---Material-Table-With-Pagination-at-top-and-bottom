@@ -13,6 +13,7 @@ export class TablePaginationExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
   currentPageSize=10;
+  currentPageIndex=0;
   @ViewChild('paginator') paginator: MatPaginator;
   @ViewChild('mainDiv') mainDiv:ElementRef;
   /**
@@ -25,12 +26,12 @@ export class TablePaginationExample {
   @HostListener("window:scroll",['$event'])
   onScroll(){
     this.dataSource.paginator = this.paginator;
-    this.paginator.showFirstLastButtons=true;
   }
 
   pageEvents(event){
-    this.dataSource.paginator = this.paginator;
-    this.paginator.showFirstLastButtons=true;
+    console.log(event);
+  
+    this.currentPageIndex=event.pageIndex;
     this.currentPageSize=event.pageSize;
   }
 }
