@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild,HostListener} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 /**
@@ -12,13 +12,17 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 export class TablePaginationExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-
+  
   @ViewChild('paginator') paginator: MatPaginator;
   /**
    * Set the paginator after the view init since this component will
    * be able to query its view for the initialized paginator.
    */
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+  @HostListener("window:scroll",['$event'])
+  onScroll(){
     this.dataSource.paginator = this.paginator;
   }
 }
