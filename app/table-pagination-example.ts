@@ -12,7 +12,7 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 export class TablePaginationExample {
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
-  
+  currentPageSize=10;
   @ViewChild('paginator') paginator: MatPaginator;
   /**
    * Set the paginator after the view init since this component will
@@ -21,9 +21,14 @@ export class TablePaginationExample {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-  @HostListener("window:scroll",['$event'])
-  onScroll(){
+  // @HostListener("window:scroll",['$event'])
+  // onScroll(){
+    
+  // }
+
+  pageEvents(event){
     this.dataSource.paginator = this.paginator;
+    this.currentPageSize=event.pageSize;
   }
 }
 
