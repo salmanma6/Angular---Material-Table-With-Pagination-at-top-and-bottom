@@ -25,12 +25,11 @@ export class TablePaginationExample {
   }
   @HostListener("window:scroll",['$event'])
   onScroll(){
-    this.dataSource.paginator = this.paginator;
+    setTimeout(()=> this.dataSource.paginator = this.paginator,0)  
   }
 
   pageEvents(event){
     console.log(event);
-  
     this.currentPageIndex=event.pageIndex;
     this.currentPageSize=event.pageSize;
   }
